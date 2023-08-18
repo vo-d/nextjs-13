@@ -1,3 +1,4 @@
+// This layout page will define the layout and component for the web pages
 import '@/styles/globals.css'
 import Header from './Header'
 
