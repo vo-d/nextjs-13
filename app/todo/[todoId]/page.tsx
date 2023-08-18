@@ -38,6 +38,9 @@ export default TodoPage
 // use with no-cache or revalidate (same to getStaticProps with or without revalidation)
 export async function generateStaticParams(){
     const res = await fetch("https://jsonplaceholder.typicode.com/todos/")
+
+    // Define the return type for todos. Basically it means that todos will not accept any value that is not an array of Todo
+    // translate to java: Todo[] todos = await res.json()
     const todos: Todo[] = await res.json()
 
 
