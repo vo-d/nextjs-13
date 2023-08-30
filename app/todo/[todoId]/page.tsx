@@ -1,5 +1,8 @@
 import { Todo } from '@/typings'
 import React from 'react'
+import { notFound } from 'next/navigation'
+
+
 
 // PageProps contains the params and params contains the todoId, which is the name of the folder. This name will change based on the slug since it is multipages folder.
 // by defining type for the PageProps, we can restrict the amount of data that can be used in it.
@@ -11,6 +14,10 @@ type PageProps = {
 
 async function TodoPage({params:{todoId}} : PageProps) {
     const todo = await fetchTodo(todoId)
+
+    // return page not found if there is no todo
+    if (!todo.id) {return notFound()}
+
     return (
         <div className='p-0 bg-yellow-200 border-2 m-2 shadow-lg'>
             <p>
@@ -19,7 +26,7 @@ async function TodoPage({params:{todoId}} : PageProps) {
             <p>Completed: {todo.completed ? "yes" : "No"}</p>
             <p className='border-t border-black mt-5 text-right'>
                 By User: {todo.userId}
-            </p>
+            </p> 
         </div>
     )
 }
